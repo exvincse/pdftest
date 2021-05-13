@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./build/pdf.js"></script>
-    <script src="./web/viewer.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
     <style>
         .wrap1,.wrap2,.wrap3{
             border: 1px solid red;
@@ -20,34 +21,18 @@
     </style>
 </head>
 <body>
-    <div class="wrap1"></div>
+    <div data-fancybox="watermark">
+        <div class="wrap1"></div>
+    </div>
     <div class="wrap2"></div>
     <div class="wrap3"></div>
+    <script src="./build/pdf.js"></script>
+    <script src="./web/viewer.js"></script>
     <script>
-        // var DEFAULT_URL = './9112716163925.pdf';
-        // pdfjsLib.GlobalWorkerOptions.workerSrc = './pdf.worker.js';
-        // var container = document.getElementById('viewerContainer');
-        // var viewer = document.getElementById('pdfViewer');
-
-        // var pdfLinkService = new pdfjsViewer.PDFLinkService();
-
-        // var pdfViewer = new pdfjsViewer.PDFViewer({
-        //         container: container,
-        //         viewer: viewer,
-        //         linkService: pdfLinkService,
-        //     });
-        //     pdfLinkService.setViewer(pdfViewer);
-
-        //     // Loading document.
-        //     var loadingTask = pdfjsLib.getDocument({
-        //     url: DEFAULT_URL,
-        //     });
-        //     loadingTask.promise.then(function(pdfDocument) {
-        //     pdfViewer.setDocument(pdfDocument);
-
-        //     pdfLinkService.setDocument(pdfDocument, null);
-        // });
-
+        $('[data-fancybox="watermark"]').fancybox({
+            modal: false,
+            touch: false
+        });
         function pdfView(name, url) {
             var pdfjsLib = window['pdfjs-dist/build/pdf'];
             pdfjsLib.GlobalWorkerOptions.workerSrc = './build/pdf.worker.js';
@@ -63,73 +48,18 @@
                         var context = canvas.getContext('2d');
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
-                        // page.getTextContent().then(function (textContent){
-                        //     console.log(textContent);
-                        // });
                         var renderContext = {
                             canvasContext: context,
                             viewport: viewport,
                         };
                         page.render(renderContext);
                         wrap.appendChild(canvas);
-
-                        // page.getTextContent({ normalizeWhitespace: true }).then(function (textContent) {
-                        //     textContent.items.forEach(function (textItem) {
-                        //     var tx = PDFJS.Util.transform(
-                        //         PDFJS.Util.transform(viewport.transform, textItem.transform),
-                        //         [1, 0, 0, -1, 0, 0]
-                        //     );
-
-                        //     var style = textContent.styles[textItem.fontName];
-                            
-                        //     // adjust for font ascent/descent
-                        //     var fontSize = Math.sqrt((tx[2] * tx[2]) + (tx[3] * tx[3]));
-
-                        //     if (style.ascent) {
-                        //         tx[5] -= fontSize * style.ascent;
-                        //     } else if (style.descent) {
-                        //         tx[5] -= fontSize * (1 + style.descent);
-                        //     } else {
-                        //         tx[5] -= fontSize / 2;
-                        //     }
-                            
-                        //     // adjust for rendered width
-                        //     if (textItem.width > 0) {
-                        //         ctx.font = tx[0] + 'px ' + style.fontFamily;
-                                
-                        //         var width = ctx.measureText(textItem.str).width;
-
-                        //         if (width > 0) {
-                        //         //tx[0] *= (textItem.width * viewport.scale) / width;
-                        //         tx[0] = (textItem.width * viewport.scale) / width;
-                        //         }
-                        //     }
-
-                        //     // var item = document.createElementNS('http://www.w3.org/2000/svg', 'svg:text');
-                        //     // item.textContent = textItem.str;
-                        //     // item.setAttribute('font-family', style.fontFamily);
-                        //     // item.setAttribute('transform', 'matrix(' + tx.join(' ') + ')');
-
-                        //     var item = document.createElement('span');
-                        //     item.textContent = textItem.str;
-                        //     item.style.fontFamily = style.fontFamily;
-                        //     //item.style.transform = 'matrix(' + tx.join(',') + ')';
-                        //     item.style.fontSize = fontSize + 'px';
-                        //     item.style.transform = 'scaleX(' + tx[0] + ')';
-                        //     item.style.left = tx[4] + 'px';
-                        //     item.style.top = tx[5] + 'px';
-
-                        //     pageContainer.appendChild(item);
-                        //     });
-                        // });
                     })
                 }
-            }, function (reason) {
-                console.error(reason);
             });
         }
         ['.wrap1', '.wrap2', '.wrap3'].forEach(item => {
-            pdfView(item, './9112716163925.pdf')
+            pdfView(item, './9112716163925.pdf');
         })
     </script>
 </body>
