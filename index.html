@@ -82,7 +82,7 @@
             let element = document.querySelector(name);
             let next = document.querySelector('.next');
             element.addEventListener('scroll', function(event) {
-                if (element.scrollTop === (element.scrollHeight - element.clientHeight)) {
+                if (element.scrollTop >= (element.scrollHeight - element.clientHeight - 50)) {
                     switch(name.split('.')[1]) {
                         case 'wrap2':
                             wrap2 = true;
