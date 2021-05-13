@@ -5,8 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .pdfobject-container { height: 500rem; border: 1rem solid rgba(0,0,0,.1); }
+    </style>
 </head>
 <body>
-    <embed src="./9112716163925.pdf" width="100%" height="1000px">
+    <div id="example1"></div>
+    <script src="https://cdn.jsdelivr.net/npm/pdfobject@2.2.5/pdfobject.min.js"></script>
+    <script>PDFObject.embed("./9112716163925.pdf", "#example1");</script>
 </body>
 </html>
