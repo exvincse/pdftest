@@ -26,6 +26,10 @@
             height: 50px;
             margin-bottom: 20px;
         }
+        .active{
+            background-color: green;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -36,7 +40,7 @@
         </div>
         <div class="wrap2"></div>
         <div class="wrap3"></div>
-        <button class="next" disabled>下一步</button>
+        <button class="next">下一步</button>
     </div>
     <script src="./build/pdf.js"></script>
     <script src="./web/viewer.js"></script>
@@ -88,7 +92,7 @@
                         break;
                     }
                     if (wrap2 && wrap3) {
-                        next.disabled = false
+                        next.classList.add('active');
                     }
                 }
             })
