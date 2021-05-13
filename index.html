@@ -52,7 +52,6 @@
                 touch: false
             });
         })
-        let wrap1 = false;
         let wrap2 = false;
         let wrap3 = false;
         function pdfView(name, url) {
@@ -62,7 +61,6 @@
             loadingTask.promise.then(function(pdf) {
                 for(let i = 1; i < pdf._pdfInfo.numPages; i++) {
                     pdf.getPage(i).then(function(page) {
-                        let text = '';
                         var scale = 1.5;
                         var viewport = page.getViewport({scale: scale});
                         var wrap = document.querySelector(name);
