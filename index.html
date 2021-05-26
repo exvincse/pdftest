@@ -66,17 +66,17 @@
                         var wrap = document.querySelector(name);
                         var viewCanvas = document.createElement('canvas');
                         var context = viewCanvas.getContext('2d');
-                        // viewCanvas.height = viewport.height
-                        // viewCanvas.width = viewport.width
-                        const zoom = 2;
-                        viewCanvas.height = viewport.height * zoom ;
-                        viewCanvas.width = viewport.width * zoom;
-                        viewCanvas.style.height = viewport.height + 'px';
-                        viewCanvas.style.width = viewport.width + 'px';
+                        viewCanvas.height = viewport.height
+                        viewCanvas.width = viewport.width
+                        // const zoom = 2;
+                        // viewCanvas.height = viewport.height * zoom ;
+                        // viewCanvas.width = viewport.width * zoom;
+                        // viewCanvas.style.height = viewport.height + 'px';
+                        // viewCanvas.style.width = viewport.width + 'px';
                         const renderContext = {
                             canvasContext: context,
                             viewport,
-                            transform: [zoom, 0, 0, zoom, 0, 0]
+                            // transform: [zoom, 0, 0, zoom, 0, 0]
                         };
                         page.render(renderContext);
                         wrap.appendChild(viewCanvas);
