@@ -82,23 +82,6 @@
                         wrap.appendChild(viewCanvas);
                     })
                 }
-                // for(let i = 1; i < pdf._pdfInfo.numPages; i++) {
-                //     pdf.getPage(i).then(function(page) {
-                //         var scale = 1.5;
-                //         var viewport = page.getViewport({scale: scale});
-                //         var wrap = document.querySelector(name);
-                //         var canvas = document.createElement('canvas');
-                //         var context = canvas.getContext('2d');
-                //         canvas.height = viewport.height;
-                //         canvas.width = viewport.width;
-                //         var renderContext = {
-                //             canvasContext: context,
-                //             viewport: viewport,
-                //         };
-                //         page.render(renderContext);
-                //         wrap.appendChild(canvas);
-                //     })
-                // }
             });
             let element = document.querySelector(name);
             let next = document.querySelector('.next');
@@ -119,7 +102,7 @@
             })
         }
         ['.wrap1', '.wrap2', '.wrap3'].forEach(item => {
-            pdfView(item, './9112716163925.pdf');
+            pdfView(item, './example.pdf');
         })
     </script>
 </body>
