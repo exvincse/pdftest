@@ -35,25 +35,25 @@
 <body>
     <div class="wrap">
         <button class="lightbox">燈箱</button>
-        <div id="lightbox" style="display: none;">
+        <!-- <div id="lightbox" style="display: none;">
             <div class="wrap1"></div>
-        </div>
+        </div> -->
         <div class="wrap2"></div>
-        <div class="wrap3"></div>
+        <!-- <div class="wrap3"></div> -->
         <button class="next">下一步</button>
     </div>
     <script src="./build/pdf.js"></script>
     <script src="./web/viewer.js"></script>
     <script>
-        let lightbox = document.querySelector('.lightbox');
-        lightbox.addEventListener('click', function() {
-            $.fancybox.open({
-                src:'#lightbox',
-                touch: false
-            });
-        })
-        let wrap2 = false;
-        let wrap3 = false;
+        // let lightbox = document.querySelector('.lightbox');
+        // lightbox.addEventListener('click', function() {
+        //     $.fancybox.open({
+        //         src:'#lightbox',
+        //         touch: false
+        //     });
+        // })
+        // let wrap2 = false;
+        // let wrap3 = false;
         function pdfView(name, url) {
             var pdfjsLib = window['pdfjs-dist/build/pdf'];
             pdfjsLib.GlobalWorkerOptions.workerSrc = './build/pdf.worker.js';
@@ -66,42 +66,44 @@
                         var wrap = document.querySelector(name);
                         var viewCanvas = document.createElement('canvas');
                         var context = viewCanvas.getContext('2d');
-                        viewCanvas.height = viewport.height
-                        viewCanvas.width = viewport.width
-                        // const zoom = 2;
-                        // viewCanvas.height = viewport.height * zoom ;
-                        // viewCanvas.width = viewport.width * zoom;
-                        // viewCanvas.style.height = viewport.height + 'px';
-                        // viewCanvas.style.width = viewport.width + 'px';
-                        const renderContext = {
+                        // viewCanvas.height = viewport.height
+                        // viewCanvas.width = viewport.width
+                        const zoom = 2;
+                        viewCanvas.height = viewport.height * zoom ;
+                        viewCanvas.width = viewport.width * zoom;
+                        viewCanvas.style.height = viewport.height + 'px';
+                        viewCanvas.style.width = viewport.width + 'px';
+                        var renderContext = {
                             canvasContext: context,
                             viewport,
-                            // transform: [zoom, 0, 0, zoom, 0, 0]
+                            transform: [zoom, 0, 0, zoom, 0, 0]
                         };
                         page.render(renderContext);
                         wrap.appendChild(viewCanvas);
                     })
                 }
             });
-            let element = document.querySelector(name);
-            let next = document.querySelector('.next');
-            element.addEventListener('scroll', function(event) {
-                if (element.scrollTop >= (element.scrollHeight - element.clientHeight - 50)) {
-                    switch(name.split('.')[1]) {
-                        case 'wrap2':
-                            wrap2 = true;
-                        break;
-                        case 'wrap3':
-                            wrap3 = true;
-                        break;
-                    }
-                    if (wrap2 && wrap3) {
-                        next.classList.add('active');
-                    }
-                }
-            })
+            // let element = document.querySelector(name);
+            // let next = document.querySelector('.next');
+            // element.addEventListener('scroll', function(event) {
+            //     if (element.scrollTop >= (element.scrollHeight - element.clientHeight - 50)) {
+            //         switch(name.split('.')[1]) {
+            //             case 'wrap2':
+            //                 wrap2 = true;
+            //             break;
+            //             case 'wrap3':
+            //                 wrap3 = true;
+            //             break;
+            //         }
+            //         if (wrap2 && wrap3) {
+            //             next.classList.add('active');
+            //         }
+            //     }
+            // })
         }
-        ['.wrap1', '.wrap2', '.wrap3'].forEach(item => {
+        ['.wrap2'].forEach(item => {
+            // 9112716163925
+            // example
             pdfView(item, './example.pdf');
         })
     </script>
